@@ -1,3 +1,4 @@
+import pytest
 import openpyxl
 def getRowCount(file,sheetName):
     workbook = openpyxl.load_workbook(file)
@@ -17,5 +18,9 @@ def readData(file, sheetName, rownum,columnnum):
     return sheet.cell(row=rownum, column=columnnum).value
 
 
-
+def writeData(file, sheetName,rownum,columnnum,data):
+    workbook = openpyxl.load_workbook(file)
+    sheet = workbook.get_sheet_by_name(sheetName)
+    data = sheet.cell(row=rownum, column=columnnum).value
+    workbook.save(file)
 
